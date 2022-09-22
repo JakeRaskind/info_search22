@@ -17,6 +17,7 @@ def preprocess_file(text: str) -> list:
   :param filename:
   :return:
   '''
-  tokens = re.sub('[^а-яё\s-]', ' ', text.lower()).split()
+  pattern = re.compile('[^а-яё\s-]')
+  tokens = re.sub(pattern, ' ', text.lower()).split()
   lemmas = [morph.parse(word)[0].normal_form for word in tokens if word not in sws]
   return lemmas
